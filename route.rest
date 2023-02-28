@@ -1,0 +1,36 @@
+GET http://localhost:3000/empruntrouter
+
+###
+
+GET http://localhost:3000/empruntrouter/63fdba5fbb828fa29677506a
+
+
+###
+POST http://localhost:3000/empruntrouter
+Content-Type: application/json
+
+{
+    "IdUser": "63fcb9d1075f9a8549b859f4",
+    "IdLivre": "63fcc2d291a72d9f742aa08b",
+    "date_emprunt": "2023-01-15",
+    "date_retour_prevu": "2023-01-22",
+    "date_retour_effective": "2023-01-22"
+}
+
+###
+
+DELETE http://localhost:3000/empruntrouter/63fe01ed01e4257e18a6747b
+
+###
+
+PATCH  http://localhost:3000/empruntrouter/63fe01ed01e4257e18a6747b
+Content-Type: application/json
+
+{
+    "IdUser": "63fcb9d1075f9a8549b859f4",
+    "IdLivre": "63fcc2d291a72d9f742aa08b",
+    "date_emprunt": "2023-01-15",
+    "date_retour_prevu": "2023-01-22",
+    "date_retour_effective": "2023-01-23"
+}
+

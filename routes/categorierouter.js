@@ -1,9 +1,10 @@
 const express = require("express");
+const { protectAdmin } = require("../middleware/authMiddleware");
 const router = express.Router();
 const Categorie = require("../models/categorie");
 
 //Getting All
-router.get("/", async (req, res) => {
+router.get("/", protectAdmin, async (req, res) => {
   try {
     const categorierouter = await Categorie.find();
     res.json(categorierouter);

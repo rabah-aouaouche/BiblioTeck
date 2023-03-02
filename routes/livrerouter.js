@@ -67,4 +67,26 @@ router.delete("/:id", async (req, res) => {
   res.Livre = Livre;
 });
 
+router.get("/", async (req, res) => {
+  try {
+    let filters = {};
+    if (req.query.categorie) {
+      filters.categorie = req.query.categorie;
+    }
+    if (req.query.auteur) {
+      filters.autheur = req.query.autheur;
+    }
+    if (req.query.note) {
+      filters.note = req.query.note;
+    }
+    if (req.query.nombre_emprunt) {
+      filters.nombre_emprunt = req.query.nombre_emprunt;
+    }
+    const livr = await Livre.find(filters);
+    res.status(200).json(livr);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

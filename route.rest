@@ -18,6 +18,22 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3000/userrouter
+Content-Type: application/json
+
+{
+    "username": "gekko",
+    "password": "gekko123",
+    "email":"gekko@gmail.com",
+    "nom": "gekko",
+    "prenom": "gekko",
+    "numeroTel": "0554575599",
+    "adresse": "france",
+    "role":"admin"
+ }
+
+
+###
 
 DELETE http://localhost:3000/empruntrouter/63fe01ed01e4257e18a6747b
 

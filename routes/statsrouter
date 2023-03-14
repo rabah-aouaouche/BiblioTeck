@@ -1,0 +1,35 @@
+const express = require("express");
+const router = express.Router();
+const Livre = require("../models/livre");
+const Renouvellement = require("../models/renouvellement");
+const Emprunt = require("../models/emprunt");
+const User = require("../models/user");
+const { protectAdmin } = require("../middleware/authMiddleware");
+
+router.get("/stats", protectAdmin, async (req, res) => {
+  try {
+    const numBooks = await Livre.countDocuments();
+    const numBorrowedBooks = await Emprunt.countDocuments();
+    const mostBorrowedBooks = await Livre.aggregate([
+      { $match: { nombre_emprunt: { $ne: null } } },
+      { $group: { _id: "$titre", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 10 },
+    ]);
+    const numUsers = await User.countDocuments();
+
+    const stats = {
+      numBooks,
+      numBorrowedBooks,
+      mostBorrowedBooks,
+      numUsers,
+    };
+
+    return res.send(stats);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+module.exports = router;

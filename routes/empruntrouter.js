@@ -12,6 +12,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+// endpoint pour récupérer l'historique de prêt d'un utilisateur HISTORIIIIQUUUUEEEEEE
+router.get("/userrouter/empruntrouter/:id", async (req, res) => {
+  try {
+    const emprunt = await Emprunt.find({ IdUser: req.params.id });
+    res.json(emprunt);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //Getting one
 router.get("/:id", async (req, res) => {
   try {

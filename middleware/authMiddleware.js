@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const protectUser = (req, res, next) => {
-  const authHeader = req.headers["Authorization"];
-  const token = authHeader && authHeader.split[" "][1];
-
+  const authHeader = req.headers["authorization"];
+  const token = authHeader.split(" ")[1];
   // check json web token exists and is verified.
   if (token) {
     const { _id, role } = jwt.verify(token, "rabahaou secret");
@@ -15,8 +14,8 @@ const protectUser = (req, res, next) => {
 };
 
 const protectAdmin = (req, res, next) => {
-  const authHeader = req.headers["Authorization"];
-  const token = authHeader && authHeader.split[" "][1];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader.split(" ")[1];
 
   // check json web token exists and is verified.
   if (token) {
